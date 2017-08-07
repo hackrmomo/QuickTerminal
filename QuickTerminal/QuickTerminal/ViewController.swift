@@ -27,9 +27,7 @@ class ViewController: NSViewController {
             self.keyDown(with: $0)
             return $0
         }
-        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
-            print("event.characters!")
-        }
+        
     }
     
     @discardableResult
@@ -80,7 +78,7 @@ class ViewController: NSViewController {
     
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
-        case 0x24:
+        case 0x24: //return
             if shifted {
                 //make new line?
             }else if !shifted {
@@ -106,7 +104,7 @@ class ViewController: NSViewController {
     
     
     override func flagsChanged(with event: NSEvent) {
-        //check for .shift
+        //check for .shift and .option
         switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
         case NSEvent.ModifierFlags.shift:
             self.shifted = true
