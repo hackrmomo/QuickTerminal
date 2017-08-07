@@ -41,9 +41,8 @@ class ViewController: NSViewController {
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
         case 0x24:
-            //Do the execution
             if shifted {
-                //make new line
+                //make new line?
             }else if !shifted {
                 shell(self.inputField.stringValue)
             }
@@ -57,7 +56,7 @@ class ViewController: NSViewController {
     
     
     override func flagsChanged(with event: NSEvent) {
-        //check for 56 or 60
+        //check for .shift
         switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
         case NSEvent.ModifierFlags.shift:
             self.shifted = true
