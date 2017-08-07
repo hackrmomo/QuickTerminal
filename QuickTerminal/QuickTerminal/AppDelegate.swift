@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        // add global key listener for alt+space
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

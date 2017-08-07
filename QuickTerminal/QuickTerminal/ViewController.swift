@@ -10,6 +10,9 @@ import Cocoa
 
 class ViewController: NSViewController {
     @IBOutlet weak var inputField: CustomTextField!
+    @IBOutlet weak var outputScrollView: NSScrollView!
+    @IBOutlet var outputField: NSTextView!
+    
     
     var shifted:Bool = false;
     
@@ -24,18 +27,55 @@ class ViewController: NSViewController {
             self.keyDown(with: $0)
             return $0
         }
-        
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
+            print("event.characters!")
+        }
     }
     
     @discardableResult
-    func shell(_ args: String) -> Int32 {
+    func shell(_ args: String) -> (output: [String], error: [String], exitCode: Int32) {
+        var output : [String] = []
+        var error : [String] = []
+        
+        
         let task = Process()
         task.launchPath = "/usr/bin/env"
         let cmd = args.characters.split(separator: " ").map(String.init)
         task.arguments = cmd
+        
+        let outpipe = Pipe()
+        task.standardOutput = outpipe
+        let errpipe = Pipe()
+        task.standardError = errpipe
+        
         task.launch()
+        
+        let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
+        if var string = String(data: outdata, encoding: .utf8) {
+            string = string.trimmingCharacters(in: .newlines)
+            output = string.components(separatedBy: "\n")
+        }
+        
+        let errdata = errpipe.fileHandleForReading.readDataToEndOfFile()
+        if var string = String(data: errdata, encoding: .utf8) {
+            string = string.trimmingCharacters(in: .newlines)
+            error = string.components(separatedBy: "\n")
+        }
+        
         task.waitUntilExit()
-        return task.terminationStatus
+        let status = task.terminationStatus
+        
+        return (output, error, status)
+    }
+    
+    func updateOutput(_ lastCommand: (output:[String], error:[String], exitCode: Int32)) {
+        for str in lastCommand.output {
+            if self.outputField.string == "" {
+                self.outputField.string += str
+            }else{
+                self.outputField.string += "\n\(str)"
+            }
+        }
     }
     
     override func keyDown(with event: NSEvent) {
@@ -44,7 +84,17 @@ class ViewController: NSViewController {
             if shifted {
                 //make new line?
             }else if !shifted {
-                shell(self.inputField.stringValue)
+                if self.inputField.stringValue == "clear"{
+                    //erase it all
+                    self.outputField.string = ""
+                    self.inputField.stringValue = ""
+                }else{
+                    let lastCommand = shell(self.inputField.stringValue)
+                    self.inputField.stringValue = ""
+                    //launchUpdate
+                    updateOutput(lastCommand)
+                    
+                }
             }
             break
         default:
@@ -72,8 +122,6 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
-
 }
 
 class CustomTextField:NSTextField {
