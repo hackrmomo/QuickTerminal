@@ -271,6 +271,7 @@
 				DEVELOPMENT_TEAM = 9RRMC8U5VD;
 				INFOPLIST_FILE = QuickTerminal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.returnzerolabs.QuickTerminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -286,6 +287,7 @@
 				DEVELOPMENT_TEAM = 9RRMC8U5VD;
 				INFOPLIST_FILE = QuickTerminal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.returnzerolabs.QuickTerminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

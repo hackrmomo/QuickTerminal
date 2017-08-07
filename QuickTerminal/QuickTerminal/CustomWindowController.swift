@@ -21,7 +21,6 @@ class CustomWindowController: NSWindowController{
         self.window!.standardWindowButton(NSWindow.ButtonType.closeButton)!.isHidden = true
         self.window!.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)!.isHidden = true
         self.window!.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isHidden = true
-        self.window!.styleMask.remove(NSWindow.StyleMask.resizable)
         
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
             self.flagsChanged(with: $0)
