@@ -9,13 +9,13 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    @IBOutlet weak var inputField: NSTextField!
+    @IBOutlet weak var inputField: CustomTextField!
     
     var shifted:Bool = false;
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        inputField.initialize()
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
             self.flagsChanged(with: $0)
             return $0
@@ -41,12 +41,10 @@ class ViewController: NSViewController {
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
         case 0x24:
-            print("enter has been pressed")
             //Do the execution
             if shifted {
-                print("NextLine")
+                //make new line
             }else if !shifted {
-                print("Run")
                 shell(self.inputField.stringValue)
             }
             break
@@ -55,6 +53,8 @@ class ViewController: NSViewController {
             //Do nothing
         }
     }
+    
+    
     
     override func flagsChanged(with event: NSEvent) {
         //check for 56 or 60
@@ -75,5 +75,13 @@ class ViewController: NSViewController {
     }
 
 
+}
+
+class CustomTextField:NSTextField {
+    
+    func initialize() {
+        //Do stuff
+    }
+    
 }
 

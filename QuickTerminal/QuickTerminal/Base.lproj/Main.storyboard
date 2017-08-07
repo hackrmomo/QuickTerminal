@@ -683,7 +683,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="CustomWindowController" customModule="QuickTerminal" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -706,23 +706,23 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="QuickTerminal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="22"/>
+                        <rect key="frame" x="0.0" y="0.0" width="679" height="77"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GQc-YZ-r9W">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="nZY-Um-wB6">
-                                    <font key="font" metaFont="system"/>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GQc-YZ-r9W" customClass="CustomTextField" customModule="QuickTerminal" customModuleProvider="target">
+                                <rect key="frame" x="33" y="24" width="613" height="29"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" id="nZY-Um-wB6">
+                                    <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GQc-YZ-r9W" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" id="1Td-Mf-hEO"/>
                             <constraint firstItem="GQc-YZ-r9W" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="9V8-8b-W6G"/>
-                            <constraint firstItem="GQc-YZ-r9W" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="smU-Ij-BKz"/>
-                            <constraint firstItem="GQc-YZ-r9W" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" id="xPw-J5-gyB"/>
+                            <constraint firstItem="GQc-YZ-r9W" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="35" id="BiB-mi-Ox0"/>
+                            <constraint firstItem="GQc-YZ-r9W" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Bkc-hU-Du5"/>
+                            <constraint firstAttribute="trailing" secondItem="GQc-YZ-r9W" secondAttribute="trailing" constant="35" id="ffh-Cv-B0K"/>
                         </constraints>
                     </view>
                     <connections>
@@ -731,7 +731,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="41.5" y="664.5"/>
         </scene>
     </scenes>
 </document>

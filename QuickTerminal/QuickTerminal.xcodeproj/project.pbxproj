@@ -11,6 +11,7 @@
 		2242B7551F37BA5E003A62EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242B7541F37BA5E003A62EE /* ViewController.swift */; };
 		2242B7571F37BA5E003A62EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2242B7561F37BA5E003A62EE /* Assets.xcassets */; };
 		2242B75A1F37BA5E003A62EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2242B7581F37BA5E003A62EE /* Main.storyboard */; };
+		2242B7631F37DC30003A62EE /* CustomWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242B7621F37DC30003A62EE /* CustomWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		2242B7591F37BA5E003A62EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2242B75B1F37BA5E003A62EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2242B75C1F37BA5E003A62EE /* QuickTerminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickTerminal.entitlements; sourceTree = "<group>"; };
+		2242B7621F37DC30003A62EE /* CustomWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				2242B7521F37BA5E003A62EE /* AppDelegate.swift */,
 				2242B7541F37BA5E003A62EE /* ViewController.swift */,
+				2242B7621F37DC30003A62EE /* CustomWindowController.swift */,
 				2242B7561F37BA5E003A62EE /* Assets.xcassets */,
 				2242B7581F37BA5E003A62EE /* Main.storyboard */,
 				2242B75B1F37BA5E003A62EE /* Info.plist */,
@@ -135,6 +138,7 @@
 			files = (
 				2242B7551F37BA5E003A62EE /* ViewController.swift in Sources */,
 				2242B7531F37BA5E003A62EE /* AppDelegate.swift in Sources */,
+				2242B7631F37DC30003A62EE /* CustomWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
