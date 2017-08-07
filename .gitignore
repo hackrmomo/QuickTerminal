@@ -69,3 +69,4 @@ fastlane/test_output
 # Custom Ignores
 *.DS_Store
 *.ai
+*.xcuserstate
