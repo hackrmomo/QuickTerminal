@@ -12,19 +12,29 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var alted:Bool = false
-    var theView:NSWindowController?
+    var theView:CustomWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         // add global key listener for alt+space
         // Find some way to get system to default allow accessibility rights
         
-        NSEvent.addGlobalMonitorForEvents(matching: .keyDown){ event in
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { event in
             self.spaceCheck(event: event)
         }
         NSEvent.addGlobalMonitorForEvents(matching: .flagsChanged) { event in
             self.altCheck(event: event)
         }
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
+            self.spaceCheck(event: $0)
+            return $0
+        }
+        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
+            self.altCheck(event: $0)
+            return $0
+        }
+        
+        self.theView = NSStoryboard.main!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier.init(rawValue: "start")) as? CustomWindowController
         runAccessibilityCheck()
     }
     
@@ -58,18 +68,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func spaceCheck(event:NSEvent){
-        //check for Int 49
+        //check for Int16 0x31
         switch event.keyCode {
         case 0x31:
-            if alted {
-                //make app visible
-                self.theView = NSStoryboard.main!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier.init(rawValue: "start")) as? NSWindowController
+            if alted && !theView!.windowIsLoaded{
+                //do show
                 theView!.loadWindow()
                 theView!.showWindow(self)
+                theView!.windowIsLoaded = true
                 NSApp.activate(ignoringOtherApps: true)
-            }else if !alted{
+            }else if alted && theView!.windowIsLoaded{
+                //do hide
+                theView!.close()
+                theView!.windowIsLoaded = false
+            }else{
                 //do nothing
-                
             }
             break
         default:
@@ -87,6 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //close
         if self.theView != nil {
             self.theView!.close()
+            self.theView?.windowIsLoaded = false
         }else{
             //Do nothing
         }

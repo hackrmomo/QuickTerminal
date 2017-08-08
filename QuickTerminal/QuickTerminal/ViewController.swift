@@ -86,6 +86,8 @@ class ViewController: NSViewController {
                     //erase it all
                     self.outputField.string = ""
                     self.inputField.stringValue = ""
+                }else if self.inputField.stringValue == ""{
+                    //do nothing
                 }else{
                     let lastCommand = shell(self.inputField.stringValue)
                     self.inputField.stringValue = ""

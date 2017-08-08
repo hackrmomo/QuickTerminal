@@ -9,56 +9,37 @@
 import Cocoa
 
 class CustomWindowController: NSWindowController{
-    
-    var alted:Bool = true
+    var windowIsLoaded:Bool = false
+    @IBOutlet var cwindow: CustomWindow!
     
     override func windowDidLoad() {
         super.windowDidLoad()
+        self.cwindow!.titleVisibility = .hidden
+        self.cwindow!.titlebarAppearsTransparent = true
+        self.cwindow!.styleMask.insert(.fullSizeContentView)
+        self.cwindow!.standardWindowButton(NSWindow.ButtonType.closeButton)!.isHidden = true
+        self.cwindow!.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)!.isHidden = true
+        self.cwindow!.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isHidden = true
         
-        self.window!.titleVisibility = .hidden
-        self.window!.titlebarAppearsTransparent = true
-        self.window!.styleMask.insert(.fullSizeContentView)
-        self.window!.standardWindowButton(NSWindow.ButtonType.closeButton)!.isHidden = true
-        self.window!.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)!.isHidden = true
-        self.window!.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isHidden = true
-        
-        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
+        /*NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
             self.flagsChanged(with: $0)
             return $0
         }
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
             self.keyDown(with: $0)
             return $0
-        }
+        }*/
         //add dark/light mode
         
     }
+}
+
+class CustomWindow: NSWindow{
     
-    override func flagsChanged(with event: NSEvent) {
-        switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
-        case NSEvent.ModifierFlags.option:
-            self.alted = true
-            break
-        default:
-            self.alted = false
-            break
-        }
-    }
-    override func keyDown(with event: NSEvent) {
-        switch event.keyCode{
-        case 0x31: //space
-            if alted{
-                //remove view
-                self.window!.orderBack(self)
-                self.close()
-            }else if !alted{
-                //Do nothing
-            }
-            break
-        default:
-            break
-            //Do nothing
-        }
+    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
+        super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
+        self.styleMask.insert(NSWindow.StyleMask.texturedBackground)
+        self.isMovableByWindowBackground = true
     }
     
 }
